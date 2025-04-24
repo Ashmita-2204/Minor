@@ -1,0 +1,333 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOD Dashboard</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/hod-dashboard.css">
+</head>
+<body>
+    <header>
+        <h1>HOD Dashboard</h1>
+        <nav>
+            <button id="hod-logout">Logout</button>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="pending-reviews">
+            <h2>Pending Appraisal Reviews</h2>
+            <div id="review-list"></div>
+        </section>
+        
+        <section class="review-form">
+            <h3>Review Faculty Appraisal</h3>
+            <form id="hodReviewForm">
+                <div class="form-group">
+                    <label>Is the appraisal satisfactory?</label>
+                    <div class="radio-group">
+                        <input type="radio" id="satisfactory-yes" name="satisfactory" value="yes">
+                        <label for="satisfactory-yes">Yes</label>
+                        <input type="radio" id="satisfactory-no" name="satisfactory" value="no">
+                        <label for="satisfactory-no">No</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="hod-comments">Comments/Recommendations</label>
+                    <textarea id="hod-comments" rows="4"></textarea>
+                </div>
+                <button type="submit">Submit Review</button>
+            </form>
+        </section>
+    </main>
+    
+    <script src="scripts/form-handler.js"></script>
+    <script src="scripts/auth.js"></script>
+</body>
+</html>
+ -->
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Self-Appraisal | HOD DASHBOARD</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/custom.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+</head>
+<body class="bg-light">
+    <!-- Header -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="images/logo.jpg" alt="SRM University Logo" height="100" class="me-3">
+                <div>
+                    <h1 class="h5 mb-0">Faculty Appraisal System</h1>
+                    <small class="text-white-50">Head of Department Dashboard</small>
+                </div>
+            </a>
+            <div class="d-flex align-items-center">
+                <div class="dropdown">
+                    <button class="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user-circle me-2"></i>
+                        <span id="user-name">Dr. Kanak Saxena </span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item" id="logout-btn"><i class="fas fa-sign-out-alt me-2"></i>Logout</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-4">
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-lg-3 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Appraisal Claimed and Report</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush rounded" id="section-nav">
+                            <!-- <a href="#review-form" class="list-group-item list-group-item-action" >
+                                <i class="fas fa-user me-2"></i>1. Appraisal Reviewed
+                            </a> -->
+                            <a href="#pending-reviews" class="list-group-item list-group-item-action">
+                                <i class="fas fa-chalkboard-teacher me-2"></i>1. Pending Reviews
+                            </a>
+                            <a href="#faculty-performance" class="list-group-item list-group-item-action">
+                                <i class="fas fa-flask me-2"></i>2. Department Reports and Faculty Performance
+                            </a>
+                          </div>
+                    </div>
+                    <div class="card-footer bg-white text-center">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="form-progress" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted" id="progress-text">0% Complete</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="col-lg-9">
+                <form id="appraisalFormReview">
+                    <!-- Toast Notification -->
+                    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                        <div id="form-toast" class="toast align-items-center text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="d-flex">
+                                <div class="toast-body" id="toast-message"></div>
+                                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Pending Reviews Section -->
+                <section id="pending-reviews" class="form-section card shadow-sm mb-4 active">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                        <h2 class="h5 mb-0"><i class="fas fa-clipboard-list me-2"></i>Pending Appraisal Reviews</h2>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-filter me-1"></i> Filter
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="filterDropdown">
+                                <li><a class="dropdown-item" href="#">All Faculty</a></li>
+                                <li><a class="dropdown-item" href="#">By Department</a></li>
+                                <li><a class="dropdown-item" href="#">By Submission Date</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Faculty Name</th>
+                                        <th>Department</th>
+                                        <th>Submitted On</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Dr. John Smith</td>
+                                        <td>Computer Science</td>
+                                        <td>2023-06-15</td>
+                                        <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">
+                                                <i class="fas fa-eye me-1"></i> <a style="color: aliceblue;" href="./review-form.html">Review</a>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dr. Sarah Johnson</td>
+                                        <td>Mathematics</td>
+                                        <td>2023-06-14</td>
+                                        <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-eye me-1"></i> Review
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dr. Michael Brown</td>
+                                        <td>Physics</td>
+                                        <td>2023-06-10</td>
+                                        <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-eye me-1"></i> Review
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </section>
+
+                
+                <!-- 2. Department Reports and Faculty Performance -->
+                <section id="faculty-performance" class="form-section card shadow-sm mb-4">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                            <h2 class="h5 mb-0">Department Reports - Faculty Performance</h2>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="departmentDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Computer Science Department
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="departmentDropdown">
+                                    <li><a class="dropdown-item" href="#">Computer Science</a></li>
+                                    <li><a class="dropdown-item" href="#">Mathematics</a></li>
+                                    <li><a class="dropdown-item" href="#">Physics</a></li>
+                                    <li><a class="dropdown-item" href="#">Chemistry</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th scope="col">Rank</th>
+                                            <th scope="col">Faculty Name</th>
+                                            <th scope="col">Designation</th>
+                                            <th scope="col">Appraisal Score</th>
+                                            <th scope="col">Performance Level</th>
+                                            <th scope="col">Recommendation</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="facultyTableBody">
+                                        <!-- Faculty data will be populated here by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div class="form-group">
+                                    <label for="itemsPerPage" class="form-label">Items per page:</label>
+                                    <select class="form-select form-select-sm" id="itemsPerPage" style="width: 80px;">
+                                        <option value="5">5</option>
+                                        <option value="10" selected>10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </div>
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination pagination-sm mb-0" id="pagination">
+                                        <!-- Pagination will be generated by JavaScript -->
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-between">
+                            <button class="btn btn-outline-primary">
+                                <i class="fas fa-download me-2"></i>Export as CSV
+                            </button>
+                            <button class="btn btn-outline-success">
+                                <i class="fas fa-print me-2"></i>Print Report
+                            </button>
+                        </div>
+                    </section>
+                              
+
+                    <!-- Additional sections would follow the same pattern -->
+
+                    <!-- Section 8: Self-Assessment -->
+                    
+                                
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="mb-3">SRM University</h5>
+                    <p class="mb-0">Faculty Self-Appraisal System</p>
+                    <p class="mb-0">As per UGC Proforma (Annexure A11)</p>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">User Guide</a></li>
+                        <li><a href="#" class="text-white-50">FAQs</a></li>
+                        <li><a href="#" class="text-white-50">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">Contact</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i> appraisal@srmuniv.edu</li>
+                        <li><i class="fas fa-phone me-2"></i> +91 44 1234 5678</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 SRM University. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/section-nav.js"></script>
+    <script src="scripts/form-handler.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/department_reports.js"></script>
+</body>
+</html>

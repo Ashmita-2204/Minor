@@ -9,15 +9,15 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/custom.css">
-    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="styles/custom.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
 </head>
 <body class="bg-light">
     <!-- Header -->
     <header class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="assets/images/university-logo.png" alt="SRM University Logo" height="50" class="me-3">
+                <img src="images/logo.jpg" alt=" University Logo" height="100" class="me-3">
                 <div>
                     <h1 class="h5 mb-0">Faculty Self-Appraisal Form</h1>
                     <small class="text-white-50">As per UGC Proforma (Annexure A11)</small>
@@ -27,7 +27,7 @@
                 <div class="dropdown">
                     <button class="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-user-circle me-2"></i>
-                        <span id="user-name">Dr. John Doe</span>
+                        <span id="user-name">Dr. Shukla</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
@@ -64,16 +64,19 @@
                                 <i class="fas fa-users me-2"></i>4. Conferences & Workshops
                             </a>
                             <a href="#section-5" class="list-group-item list-group-item-action">
-                                <i class="fas fa-hands-helping me-2"></i>5. Extension Activities
+                                <i class="fas fa-hands-helping me-2"></i>5. Extension Activities and Administrative Duties
                             </a>
-                            <a href="#section-6" class="list-group-item list-group-item-action">
+                            <!-- <a href="#section-6" class="list-group-item list-group-item-action">
                                 <i class="fas fa-tasks me-2"></i>6. Administrative Duties
+                            </a> -->
+                            <a href="#section-6" class="list-group-item list-group-item-action">
+                                <i class="fas fa-award me-2"></i>6. Awards & Recognitions
                             </a>
                             <a href="#section-7" class="list-group-item list-group-item-action">
-                                <i class="fas fa-award me-2"></i>7. Awards & Recognitions
+                                <i class="fas fa-file-signature me-2"></i>7. Self-Assessment
                             </a>
                             <a href="#section-8" class="list-group-item list-group-item-action">
-                                <i class="fas fa-file-signature me-2"></i>8. Self-Assessment
+                                <i class="fas fa-file-signature me-2"></i>8. View Review
                             </a>
                         </div>
                     </div>
@@ -214,6 +217,439 @@
                         </div>
                     </section>
 
+                    <!-- Section 3: Research & Publications -->
+                    <section id="section-3" class="form-section card shadow-sm mb-4">
+                        <div class="card-header bg-white">
+                            <h2 class="h5 mb-0"><i class="fas fa-flask me-2"></i>3. Research & Publications</h2>
+                        </div>
+                        <div class="card-body">
+                            <!-- Project Proposals -->
+                            <div class="mb-5">
+                                <h3 class="h6 text-primary mb-3">3.1 Project Proposals Submitted</h3>
+                                <table class="table table-bordered table-hover" id="project-proposals">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Title of Proposal</th>
+                                            <th>Date</th>
+                                            <th>Project Cost</th>
+                                            <th>Sponsoring Agency</th>
+                                            <th>Principal Investigator</th>
+                                            <th width="50px">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" class="form-control form-control-sm" name="proposal-title[]"></td>
+                                            <td><input type="date" class="form-control form-control-sm" name="proposal-date[]"></td>
+                                            <td><input type="text" class="form-control form-control-sm" name="proposal-cost[]"></td>
+                                            <td><input type="text" class="form-control form-control-sm" name="proposal-agency[]"></td>
+                                            <td><input type="text" class="form-control form-control-sm" name="proposal-investigator[]"></td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-sm btn-outline-danger remove-row">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn btn-sm btn-outline-primary add-row" data-table="project-proposals">
+                                    <i class="fas fa-plus me-1"></i> Add Proposal
+                                </button>
+                            </div>
+
+                            <!-- Journal Publications -->
+                            <div class="mb-3">
+                                <h3 class="h6 text-primary mb-3">3.2 Publications in Referred Journals</h3>
+                                <table class="table table-bordered table-hover" id="journal-publications">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Author's List</th>
+                                            <th>Paper Title</th>
+                                            <th>Journal</th>
+                                            <th>National/International</th>
+                                            <th>Volume</th>
+                                            <th>Page Numbers</th>
+                                            <th>Date</th>
+                                            <th width="50px">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" class="form-control form-control-sm" name="publication-authors[]"></td>
+                                            <td><input type="text" class="form-control form-control-sm" name="publication-title[]"></td>
+                                            <td><input type="text" class="form-control form-control-sm" name="publication-journal[]"></td>
+                                            <td>
+                                                <select class="form-select form-select-sm" name="publication-scope[]">
+                                                    <option value="National">National</option>
+                                                    <option value="International">International</option>
+                                                </select>
+                                            </td>
+                                            <td><input type="text" class="form-control form-control-sm" name="publication-volume[]"></td>
+                                            <td><input type="text" class="form-control form-control-sm" name="publication-pages[]"></td>
+                                            <td><input type="date" class="form-control form-control-sm" name="publication-date[]"></td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-sm btn-outline-danger remove-row">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn btn-sm btn-outline-primary add-row" data-table="journal-publications">
+                                    <i class="fas fa-plus me-1"></i> Add Publication
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-between">
+                            <button type="button" class="btn btn-outline-secondary prev-section">
+                                <i class="fas fa-arrow-left me-2"></i> Previous
+                            </button>
+                            <button type="button" class="btn btn-primary next-section">
+                                Next Section <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- Section 4: Conferences & Workshops -->
+                    <section id="section-4" class="form-section card shadow-sm mb-4">
+                        <div class="card-header bg-white">
+                            <h2 class="h5 mb-0"><i class="fas fa-users me-2"></i>4. Conferences & Workshops</h2>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered table-hover" id="conferences-workshops">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Event Type</th>
+                                        <th>Title</th>
+                                        <th>Organizer</th>
+                                        <th>Venue</th>
+                                        <th>Date</th>
+                                        <th>Role</th>
+                                        <th width="50px">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <select class="form-select form-select-sm" name="event-type[]">
+                                                <option value="Conference">Conference</option>
+                                                <option value="Workshop">Workshop</option>
+                                                <option value="Seminar">Seminar</option>
+                                                <option value="FDP">FDP</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" class="form-control form-control-sm" name="event-title[]"></td>
+                                        <td><input type="text" class="form-control form-control-sm" name="event-organizer[]"></td>
+                                        <td><input type="text" class="form-control form-control-sm" name="event-venue[]"></td>
+                                        <td><input type="date" class="form-control form-control-sm" name="event-date[]"></td>
+                                        <td>
+                                            <select class="form-select form-select-sm" name="event-role[]">
+                                                <option value="Participant">Participant</option>
+                                                <option value="Speaker">Speaker</option>
+                                                <option value="Organizer">Organizer</option>
+                                                <option value="Session Chair">Session Chair</option>
+                                            </select>
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-sm btn-outline-danger remove-row">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-sm btn-outline-primary add-row" data-table="conferences-workshops">
+                                <i class="fas fa-plus me-1"></i> Add Event
+                            </button>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-between">
+                            <button type="button" class="btn btn-outline-secondary prev-section">
+                                <i class="fas fa-arrow-left me-2"></i> Previous
+                            </button>
+                            <button type="button" class="btn btn-primary next-section">
+                                Next Section <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
+                        </div>
+                    </section>
+
+                     <!-- Section 5: Extension & Admin Duties -->
+                     <section id="section-5" class="form-section card shadow-sm mb-4">
+                        <div class="card-header bg-white">
+                            <h2 class="h5 mb-0"><i class="fas fa-tasks me-2"></i>5. Extension & Administrative Duties</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <h3 class="h6 text-primary mb-3">Community Services</h3>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="community-nss" id="community-nss">
+                                            <label class="form-check-label" for="community-nss">NSS</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="community-ncc" id="community-ncc">
+                                            <label class="form-check-label" for="community-ncc">NCC</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="community-nso" id="community-nso">
+                                            <label class="form-check-label" for="community-nso">NSO</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <h3 class="h6 text-primary mb-3">Extra Curricular Activities</h3>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="eca-coordinator" id="eca-coordinator">
+                                            <label class="form-check-label" for="eca-coordinator">Institutional (Aarush, Milan, etc.) - Coordinator</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="eca-support" id="eca-support">
+                                            <label class="form-check-label" for="eca-support">Institutional (Aarush, Milan, etc.) - Supporting Faculty</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="eca-discipline" id="eca-discipline">
+                                            <label class="form-check-label" for="eca-discipline">Aarush Discipline Committee</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <h3 class="h6 text-primary mb-3">Association Activities</h3>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="association-coordinator" id="association-coordinator">
+                                            <label class="form-check-label" for="association-coordinator">Institution/Department - Coordinator</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="association-support" id="association-support">
+                                            <label class="form-check-label" for="association-support">Institution/Department - Support Faculty</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <h3 class="h6 text-primary mb-3">Event Management</h3>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="event-coordinator" id="event-coordinator">
+                                            <label class="form-check-label" for="event-coordinator">Convocation/Admissions/Events - Coordinator</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="event-support" id="event-support">
+                                            <label class="form-check-label" for="event-support">Convocation/Admissions/Events - Support Faculty</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="event-counselling" id="event-counselling">
+                                            <label class="form-check-label" for="event-counselling">Counselling Work</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Additional Admin Duties -->
+                            <div class="accordion mb-4" id="adminDutiesAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingGeneralAdmin">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGeneralAdmin" aria-expanded="false" aria-controls="collapseGeneralAdmin">
+                                            General Administration
+                                        </button>
+                                    </h2>
+                                    <div id="collapseGeneralAdmin" class="accordion-collapse collapse" aria-labelledby="headingGeneralAdmin" data-bs-parent="#adminDutiesAccordion">
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="admin-report-coordinator" id="admin-report-coordinator">
+                                                        <label class="form-check-label" for="admin-report-coordinator">Report Preparation - Institution Level Coordinator</label>
+                                                    </div>
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="admin-report-support" id="admin-report-support">
+                                                        <label class="form-check-label" for="admin-report-support">Report Preparation - Institution Level Support</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="admin-dept-coordinator" id="admin-dept-coordinator">
+                                                        <label class="form-check-label" for="admin-dept-coordinator">Report Preparation - Department Level Coordinator</label>
+                                                    </div>
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="admin-dept-support" id="admin-dept-support">
+                                                        <label class="form-check-label" for="admin-dept-support">Report Preparation - Department Level Support</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingAccreditation">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAccreditation" aria-expanded="false" aria-controls="collapseAccreditation">
+                                            Accreditation Activities
+                                        </button>
+                                    </h2>
+                                    <div id="collapseAccreditation" class="accordion-collapse collapse" aria-labelledby="headingAccreditation" data-bs-parent="#adminDutiesAccordion">
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="accreditation-inst-coordinator" id="accreditation-inst-coordinator">
+                                                        <label class="form-check-label" for="accreditation-inst-coordinator">Institutional Level - Coordinator</label>
+                                                    </div>
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="accreditation-inst-support" id="accreditation-inst-support">
+                                                        <label class="form-check-label" for="accreditation-inst-support">Institutional Level - Support Faculty</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="accreditation-dept-coordinator" id="accreditation-dept-coordinator">
+                                                        <label class="form-check-label" for="accreditation-dept-coordinator">Department Level - Coordinator</label>
+                                                    </div>
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="accreditation-dept-support" id="accreditation-dept-support">
+                                                        <label class="form-check-label" for="accreditation-dept-support">Department Level - Support Faculty</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingExamination">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExamination" aria-expanded="false" aria-controls="collapseExamination">
+                                            Examination Duties
+                                        </button>
+                                    </h2>
+                                    <div id="collapseExamination" class="accordion-collapse collapse" aria-labelledby="headingExamination" data-bs-parent="#adminDutiesAccordion">
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="exam-chief-superintendent" id="exam-chief-superintendent">
+                                                        <label class="form-check-label" for="exam-chief-superintendent">End Semester Exam - Chief Superintendent</label>
+                                                    </div>
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="exam-support-faculty" id="exam-support-faculty">
+                                                        <label class="form-check-label" for="exam-support-faculty">End Semester Exam - Supporting Faculty</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="exam-camp-officer" id="exam-camp-officer">
+                                                        <label class="form-check-label" for="exam-camp-officer">Valuation - Camp Officer</label>
+                                                    </div>
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="exam-valuation-support" id="exam-valuation-support">
+                                                        <label class="form-check-label" for="exam-valuation-support">Valuation - Supporting Faculty</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOtherDuties">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOtherDuties" aria-expanded="false" aria-controls="collapseOtherDuties">
+                                            Other Administrative Duties
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOtherDuties" class="accordion-collapse collapse" aria-labelledby="headingOtherDuties" data-bs-parent="#adminDutiesAccordion">
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="admin-placement-coordinator" id="admin-placement-coordinator">
+                                                        <label class="form-check-label" for="admin-placement-coordinator">Department Placement Coordinator</label>
+                                                    </div>
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="admin-industrial-visit-local" id="admin-industrial-visit-local">
+                                                        <label class="form-check-label" for="admin-industrial-visit-local">Industrial Visit - Local</label>
+                                                    </div>
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="admin-industrial-visit-outstation" id="admin-industrial-visit-outstation">
+                                                        <label class="form-check-label" for="admin-industrial-visit-outstation">Industrial Visit - Outstation</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="admin-hostel-chief" id="admin-hostel-chief">
+                                                        <label class="form-check-label" for="admin-hostel-chief">Hostel Chief Warden</label>
+                                                    </div>
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="admin-hostel-warden" id="admin-hostel-warden">
+                                                        <label class="form-check-label" for="admin-hostel-warden">Hostel Warden</label>
+                                                    </div>
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="admin-hostel-deputy" id="admin-hostel-deputy">
+                                                        <label class="form-check-label" for="admin-hostel-deputy">Hostel Deputy Warden</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-between">
+                            <button type="button" class="btn btn-outline-secondary prev-section">
+                                <i class="fas fa-arrow-left me-2"></i> Previous
+                            </button>
+                            <button type="button" class="btn btn-primary next-section">
+                                Next Section <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
+                        </div>
+                    </section>
+
+                      <!-- Section 6: Awards & Recognitions -->
+                      <section id="section-6" class="form-section card shadow-sm mb-4">
+                        <div class="card-header bg-white">
+                            <h2 class="h5 mb-0"><i class="fas fa-award me-2"></i>6. Awards & Recognitions</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h3 class="h6 text-primary mb-3">Awards Received</h3>
+                                <table class="table table-bordered table-hover" id="awards-recognitions">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Award Title</th>
+                                            <th>Organization</th>
+                                            <th>Date</th>
+                                            <th>Certificate</th>
+                                            <th width="50px">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" class="form-control form-control-sm" name="award-title[]"></td>
+                                            <td><input type="text" class="form-control form-control-sm" name="award-organization[]"></td>
+                                            <td><input type="date" class="form-control form-control-sm" name="award-date[]"></td>
+                                            <td>
+                                                <input type="file" class="form-control form-control-sm" name="award-certificate[]" accept="image/*,.pdf">
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-sm btn-outline-danger remove-row">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn btn-sm btn-outline-primary add-row" data-table="awards-recognitions">
+                                    <i class="fas fa-plus me-1"></i> Add Award
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-between">
+                            <button type="button" class="btn btn-outline-secondary prev-section">
+                                <i class="fas fa-arrow-left me-2"></i> Previous
+                            </button>
+                            <button type="button" class="btn btn-primary next-section">
+                                Next Section <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
+                        </div>
+                    </section>
+
                     <!-- Additional sections would follow the same pattern -->
 
                     <!-- Section 8: Self-Assessment -->
@@ -283,7 +719,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5 class="mb-3">SRM University</h5>
+                    <h5 class="mb-3">S.A.T.I.</h5>
                     <p class="mb-0">Faculty Self-Appraisal System</p>
                     <p class="mb-0">As per UGC Proforma (Annexure A11)</p>
                 </div>
@@ -298,14 +734,14 @@
                 <div class="col-md-3">
                     <h5 class="mb-3">Contact</h5>
                     <ul class="list-unstyled">
-                        <li><i class="fas fa-envelope me-2"></i> appraisal@srmuniv.edu</li>
+                        <li><i class="fas fa-envelope me-2"></i> appraisal@sati.edu</li>
                         <li><i class="fas fa-phone me-2"></i> +91 44 1234 5678</li>
                     </ul>
                 </div>
             </div>
             <hr class="my-4 bg-secondary">
             <div class="text-center">
-                <p class="mb-0">&copy; 2025 SRM University. All rights reserved.</p>
+                <p class="mb-0">&copy; 2025 S.A.T.I. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -313,9 +749,9 @@
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
-    <script src="assets/js/auth.js"></script>
-    <script src="assets/js/section-nav.js"></script>
-    <script src="assets/js/form-handler.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/section-nav.js"></script>
+    <script src="scripts/form-handler.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
