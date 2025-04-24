@@ -1,0 +1,62 @@
+/* Appraisal Form Styles */
+#appraisalForm {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+}
+
+#appraisalForm h3 {
+    margin: 1rem 0;
+    color: var(--dark-color);
+}
+
+.form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+#submit-form {
+    background: var(--secondary-color);
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+#submit-form:hover {
+    background: #27ae60;
+}
+
+/* Status Indicator */
+#status-indicator {
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+}
+
+.status-pending {
+    background: #f39c12;
+    color: white;
+}
+
+.status-approved {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.status-rejected {
+    background: var(--danger-color);
+    color: white;
+}

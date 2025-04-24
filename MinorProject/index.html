@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Self-Appraisal System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="bg-light">
+    <!-- Header -->
+    <header class="app-header navbar navbar-expand-lg navbar-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="images/university-logo.png" alt="University Logo" height="40" class="me-3">
+                <h1 class="h4 mb-0">Faculty Self-Appraisal System</h1>
+            </a>
+            <nav id="main-nav" class="ms-auto">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about.html"><i class="fas fa-info-circle me-1"></i> About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-question-circle me-1"></i> Help</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="content" class="container my-5">
+        <section class="welcome card shadow-lg border-0 overflow-hidden">
+            <div class="card-body p-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <h2 class="display-5 fw-bold mb-4">Welcome to the Faculty Appraisal Portal</h2>
+                        <p class="lead mb-4">A comprehensive platform for faculty performance evaluation and professional development tracking.</p>
+                        
+                        <div class="auth-buttons d-flex flex-wrap gap-3">
+                            <button id="login-btn" class="btn btn-primary btn-lg px-4 py-3">
+                                <i class="fas fa-user-graduate me-2"></i> Faculty Login
+                            </button>
+                            <button id="hod-btn" class="btn btn-outline-primary btn-lg px-4 py-3">
+                                <i class="fas fa-user-tie me-2"></i> HOD Login
+                            </button>
+                            <!-- <button id="admin-btn" class="btn btn-outline-secondary btn-lg px-4 py-3">
+                                <i class="fas fa-user-shield me-2"></i> Admin Login
+                            </button> -->
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="flowchart bg-white p-4 rounded-3 shadow-sm">
+                            <img src="images/flowchart.png" alt="Appraisal Process Flowchart" class="img-fluid rounded-3">
+                            <p class="text-muted mt-3 mb-0 text-center">
+                                <i class="fas fa-info-circle me-2"></i> The appraisal process follows the above workflow
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Features Section -->
+            <div class="card-footer bg-transparent border-top-0 pt-0 pb-4">
+                <div class="row g-4 text-center">
+                    <div class="col-md-4">
+                        <div class="p-3 rounded-3 h-100 shadow-sm bg-white">
+                            <i class="fas fa-chart-line text-primary mb-3" style="font-size: 2rem;"></i>
+                            <h3 class="h5">Performance Tracking</h3>
+                            <p class="mb-0">Monitor your academic progress throughout the year</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 rounded-3 h-100 shadow-sm bg-white">
+                            <i class="fas fa-file-alt text-primary mb-3" style="font-size: 2rem;"></i>
+                            <h3 class="h5">Easy Documentation</h3>
+                            <p class="mb-0">Submit your achievements with minimal effort</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 rounded-3 h-100 shadow-sm bg-white">
+                            <i class="fas fa-bullseye text-primary mb-3" style="font-size: 2rem;"></i>
+                            <h3 class="h5">Goal Setting</h3>
+                            <p class="mb-0">Plan and track your professional development goals</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-3">Faculty Appraisal System</h5>
+                    <p class="mb-0">A comprehensive platform for faculty performance evaluation and professional development tracking.</p>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50"><i class="fas fa-chevron-right me-2"></i> User Guide</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50"><i class="fas fa-chevron-right me-2"></i> FAQs</a></li>
+                        <li><a href="#" class="text-white-50"><i class="fas fa-chevron-right me-2"></i> Contact Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="text-uppercase mb-3">Contact</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> appraisal@university.edu</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +1 (123) 456-7890</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> University Campus</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 University Appraisal System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Self-Appraisal | SRM University</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body class="bg-light">
+    <!-- Header -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/images/university-logo.png" alt="SRM University Logo" height="50" class="me-3">
+                <div>
+                    <h1 class="h5 mb-0">Faculty Self-Appraisal Form</h1>
+                    <small class="text-white-50">As per UGC Proforma (Annexure A11)</small>
+                </div>
+            </a>
+            <div class="d-flex align-items-center">
+                <div class="dropdown">
+                    <button class="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user-circle me-2"></i>
+                        <span id="user-name">Dr. John Doe</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item" id="logout-btn"><i class="fas fa-sign-out-alt me-2"></i>Logout</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-4">
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-lg-3 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Appraisal Sections</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush rounded" id="section-nav">
+                            <a href="#section-1" class="list-group-item list-group-item-action active">
+                                <i class="fas fa-user me-2"></i>1. Personal Information
+                            </a>
+                            <a href="#section-2" class="list-group-item list-group-item-action">
+                                <i class="fas fa-chalkboard-teacher me-2"></i>2. Teaching & Learning
+                            </a>
+                            <a href="#section-3" class="list-group-item list-group-item-action">
+                                <i class="fas fa-flask me-2"></i>3. Research & Publications
+                            </a>
+                            <a href="#section-4" class="list-group-item list-group-item-action">
+                                <i class="fas fa-users me-2"></i>4. Conferences & Workshops
+                            </a>
+                            <a href="#section-5" class="list-group-item list-group-item-action">
+                                <i class="fas fa-hands-helping me-2"></i>5. Extension Activities
+                            </a>
+                            <a href="#section-6" class="list-group-item list-group-item-action">
+                                <i class="fas fa-tasks me-2"></i>6. Administrative Duties
+                            </a>
+                            <a href="#section-7" class="list-group-item list-group-item-action">
+                                <i class="fas fa-award me-2"></i>7. Awards & Recognitions
+                            </a>
+                            <a href="#section-8" class="list-group-item list-group-item-action">
+                                <i class="fas fa-file-signature me-2"></i>8. Self-Assessment
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white text-center">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="form-progress" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted" id="progress-text">0% Complete</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="col-lg-9">
+                <form id="appraisalForm">
+                    <!-- Toast Notification -->
+                    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                        <div id="form-toast" class="toast align-items-center text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="d-flex">
+                                <div class="toast-body" id="toast-message"></div>
+                                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 1: Personal Information -->
+                    <section id="section-1" class="form-section card shadow-sm mb-4 active">
+                        <div class="card-header bg-white">
+                            <h2 class="h5 mb-0"><i class="fas fa-user me-2"></i>1. Personal Information</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="designation" class="form-label">Designation</label>
+                                    <input type="text" class="form-control" id="designation" name="designation" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="department" class="form-label">Department</label>
+                                    <input type="text" class="form-control" id="department" name="department" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="qualification" class="form-label">Highest Qualification</label>
+                                    <input type="text" class="form-control" id="qualification" name="qualification" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="experience" class="form-label">Total Experience (Years)</label>
+                                    <input type="number" class="form-control" id="experience" name="experience" min="0" step="0.5" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="academic-year" class="form-label">Academic Year</label>
+                                    <input type="text" class="form-control" id="academic-year" name="academic-year" placeholder="YYYY-YYYY" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-end">
+                            <button type="button" class="btn btn-primary next-section">
+                                Next Section <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- Section 2: Teaching & Learning -->
+                    <section id="section-2" class="form-section card shadow-sm mb-4">
+                        <div class="card-header bg-white">
+                            <h2 class="h5 mb-0"><i class="fas fa-chalkboard-teacher me-2"></i>2. Teaching & Learning</h2>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="h6 text-primary mb-3">2.1 Courses Taught</h3>
+                            <div class="table-responsive mb-4">
+                                <table class="table table-bordered table-hover" id="courses-taught">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Course Code</th>
+                                            <th>Course Title</th>
+                                            <th>UG/PG</th>
+                                            <th>Semester</th>
+                                            <th>No. of Students</th>
+                                            <th width="50px">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" class="form-control form-control-sm" name="course-code[]" required></td>
+                                            <td><input type="text" class="form-control form-control-sm" name="course-title[]" required></td>
+                                            <td>
+                                                <select class="form-select form-select-sm" name="course-level[]" required>
+                                                    <option value="">Select</option>
+                                                    <option value="UG">UG</option>
+                                                    <option value="PG">PG</option>
+                                                </select>
+                                            </td>
+                                            <td><input type="text" class="form-control form-control-sm" name="semester[]" required></td>
+                                            <td><input type="number" class="form-control form-control-sm" name="students[]" min="1" required></td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-sm btn-outline-danger remove-row">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn btn-sm btn-outline-primary add-row" data-table="courses-taught">
+                                    <i class="fas fa-plus me-1"></i> Add Course
+                                </button>
+                            </div>
+
+                            <h3 class="h6 text-primary mb-3">2.2 Teaching Innovations</h3>
+                            <div class="mb-3">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="teaching-innovations[]" value="CBC" id="innovation-cbc">
+                                    <label class="form-check-label" for="innovation-cbc">Conducted Class Before Class (CBC)</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="teaching-innovations[]" value="flipped" id="innovation-flipped">
+                                    <label class="form-check-label" for="innovation-flipped">Flipped Classroom Implemented</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="teaching-innovations[]" value="technology" id="innovation-technology">
+                                    <label class="form-check-label" for="innovation-technology">Innovative Use of Technology</label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="teaching-innovations-desc" class="form-label">Description of Teaching Innovations</label>
+                                <textarea class="form-control" id="teaching-innovations-desc" name="teaching-innovations-desc" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-between">
+                            <button type="button" class="btn btn-outline-secondary prev-section">
+                                <i class="fas fa-arrow-left me-2"></i> Previous
+                            </button>
+                            <button type="button" class="btn btn-primary next-section">
+                                Next Section <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- Additional sections would follow the same pattern -->
+
+                    <!-- Section 8: Self-Assessment -->
+                    <section id="section-8" class="form-section card shadow-sm mb-4">
+                        <div class="card-header bg-white">
+                            <h2 class="h5 mb-0"><i class="fas fa-file-signature me-2"></i>8. Self-Assessment</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h3 class="h6 text-primary mb-3">8.1 Strengths</h3>
+                                <textarea class="form-control" name="strengths" rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h3 class="h6 text-primary mb-3">8.2 Areas for Improvement</h3>
+                                <textarea class="form-control" name="improvements" rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h3 class="h6 text-primary mb-3">8.3 Training Needs</h3>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="training-needs[]" value="fdp" id="training-fdp">
+                                    <label class="form-check-label" for="training-fdp">Faculty Development Program</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="training-needs[]" value="workshop" id="training-workshop">
+                                    <label class="form-check-label" for="training-workshop">Workshop/Seminar</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="training-needs[]" value="certification" id="training-certification">
+                                    <label class="form-check-label" for="training-certification">Certification Course</label>
+                                </div>
+                            </div>
+                            
+                            <div class="card border-primary mb-4">
+                                <div class="card-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="declaration" id="declaration" required>
+                                        <label class="form-check-label" for="declaration">
+                                            I hereby declare that the information provided in this form is true and correct to the best of my knowledge.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-between">
+                            <button type="button" class="btn btn-outline-secondary prev-section">
+                                <i class="fas fa-arrow-left me-2"></i> Previous
+                            </button>
+                            <div>
+                                <button type="button" class="btn btn-outline-primary me-2" id="save-draft">
+                                    <i class="fas fa-save me-2"></i>Save Draft
+                                </button>
+                                <button type="submit" class="btn btn-success" id="submit-form">
+                                    <i class="fas fa-paper-plane me-2"></i>Submit Appraisal
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="mb-3">SRM University</h5>
+                    <p class="mb-0">Faculty Self-Appraisal System</p>
+                    <p class="mb-0">As per UGC Proforma (Annexure A11)</p>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">User Guide</a></li>
+                        <li><a href="#" class="text-white-50">FAQs</a></li>
+                        <li><a href="#" class="text-white-50">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">Contact</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i> appraisal@srmuniv.edu</li>
+                        <li><i class="fas fa-phone me-2"></i> +91 44 1234 5678</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 SRM University. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/section-nav.js"></script>
+    <script src="assets/js/form-handler.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
